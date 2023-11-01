@@ -18,7 +18,7 @@ public class Main {
             else if(B > A && B > C){
                 max = B;
             }
-            else if(C > A  && C> B){
+            else{
                 max = C;
             }
             System.out.println( max * 100 );
