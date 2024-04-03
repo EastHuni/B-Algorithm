@@ -1,45 +1,35 @@
-import java.util.Scanner;
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
 import java.util.Stack;
 
-import static java.util.Collections.sort;
-
 public class Main {
-    public static void main(String[] args) {
-        Scanner sc = new Scanner(System.in);
-        int N = sc.nextInt();
-        int [] A = new int[N];
-        for(int i=0; i<N; i++){
-            A[i] = sc.nextInt();
-        }
-        Stack<Integer> stack = new Stack<>();
-        int num = 1;
-        boolean result = true;
-        StringBuffer bf = new StringBuffer();
-        for(int i = 0; i < A.length; i++){
-            int su = A[i];
-            if (su >= num){
-                while(su>=num){
-                    stack.push(num++);
-                    bf.append("+\n");
-                }
-                stack.pop();
-                bf.append("-\n");
-            }else {
-                int n = stack.pop();
-                if(n>su){
-                    System.out.println("NO");
-                    result = false;
-                    break;
-                }else {
-                    bf.append("-\n");
-                }
+    public static void main(String[] args) throws IOException {
+        
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        StringBuilder sb = new StringBuilder();
+        Stack<Integer>stack = new Stack<>();
+        int N = Integer.parseInt(br.readLine());
 
-
+        int start = 0;
+        
+        while (N --> 0){
+            int value = Integer.parseInt(br.readLine());
+            if (value > start){
+                for (int i = start + 1 ; i<= value ; i++){
+                    stack.push(i);
+                    sb.append('+').append('\n');
+                }
+                start = value;
+            } else if (stack.peek() != value) {
+                System.out.println("NO");
+                return;
             }
 
+            stack.pop();
+            sb.append('-').append('\n');
         }
-        if(result){
-            System.out.println(bf.toString());
-        }
+        System.out.println(sb);
+
     }
 }
