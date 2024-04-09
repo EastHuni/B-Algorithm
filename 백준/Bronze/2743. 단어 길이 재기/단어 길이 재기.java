@@ -1,19 +1,9 @@
-import java.io.*;
-import java.sql.SQLOutput;
 import java.util.Scanner;
 
 public class Main {
-    public static void main(String[] args) throws IOException {
+    public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
-        String str;
-
-        str = sc.nextLine();
-        char[] arr = str.toCharArray();
-
-        System.out.println(arr.length);
-
-
-
-
+        String s = sc.nextLine();
+        System.out.println(s.length());
     }
 }
