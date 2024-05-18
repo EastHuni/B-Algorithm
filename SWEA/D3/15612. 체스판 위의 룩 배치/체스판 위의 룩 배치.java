@@ -1,54 +1,51 @@
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.sql.SQLOutput;
+import java.net.Inet4Address;
 
 public class Solution {
-    public static void main(String[] args) throws Exception {
+    public static void main(String[] args) throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-
         int T = Integer.parseInt(br.readLine());
-
-        for (int TC = 1; TC <= T; TC++) {
-            Character[][] map = new Character[8][8];
+        for (int test_case = 1; test_case <= T; test_case++) {
+            Character [][] arr = new Character[8][8];
             String result = "yes";
-
+            int count = 0;
             for (int i = 0; i < 8; i++) {
-                String s = br.readLine();
+                String str = br.readLine();
                 for (int j = 0; j < 8; j++) {
-                    map[i][j] = s.charAt(j);
+                    arr[i][j] = str.charAt(j);
                 }
             }
-
-            int cnt = 0;
             for (int i = 0; i < 8; i++) {
                 for (int j = 0; j < 8; j++) {
-                    if (map[i][j] == 'O') {
-                        cnt++;
+                    if (arr[i][j] == 'O'){
+                        count++;
                     }
                 }
-                if (cnt != 1) {
+                if (count != 1){
                     result = "no";
                     break;
                 }
-                cnt = 0;
+                count = 0;
             }
+                
 
-            if (result != "no") {
+            if (result != "no"){
                 for (int i = 0; i < 8; i++) {
                     for (int j = 0; j < 8; j++) {
-                        if (map[j][i] == 'O') {
-                            cnt++;
+                        if (arr[j][i] == 'O'){
+                            count++;
                         }
                     }
-                    if (cnt != 1) {
+                    if (count != 1){
                         result = "no";
                         break;
                     }
-                    cnt = 0;
+                    count = 0;
                 }
             }
-            System.out.println("#"+TC+" "+result);
+            System.out.println("#" + test_case + " " + result);
         }
     }
 }
