@@ -1,21 +1,17 @@
 class Solution {
     public int solution(int num) {
         int answer = 0;
+        long n = num;
         int count = 0;
-        for(int i = 0; i< 400; i++){
-            if( num == 1){
-                break;
-            }else if(num % 2 == 0){
-                num /= 2;
-                count++;
+        for(int i = 0; i< 500; i++){
+            if( n == 1){
+                return i;
+            }else if(n % 2 == 0){
+                n /= 2;
             }else {
-                num = num * 3 + 1;
-                count++;
+                n = n * 3 + 1;
             }
         }
-        if(count >= 400){
-            answer = -1;
-        }else answer = count;
-        return answer;
+        return -1;
     }
 }
