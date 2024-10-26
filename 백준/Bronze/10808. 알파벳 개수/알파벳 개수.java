@@ -2,19 +2,15 @@ import java.util.Scanner;
 
 public class Main {
     public static void main(String[] args) {
-        Scanner sc = new Scanner(System.in);
-        int [] arr = new int [26];
-        StringBuilder sb = new StringBuilder();
-        String s = sc.nextLine();
-        for (int i = 0; i < s.length(); i++) {
-            char ch = s.charAt(i);
-            if (ch >= 'a' && ch<= 'z'){
-                arr[ch - 'a']++;
-            }
+        Scanner sc= new Scanner(System.in);
+        char [] ch = sc.nextLine().toCharArray();
+        int [] result = new int[26];
+        for (int i = 0; i < ch.length; i++) {
+            int n = ch[i] - 'a';
+            result[n]++;
         }
-        for (int i = 0; i < arr.length; i++) {
-            sb.append(arr[i]).append(' ');
+        for(int i = 0; i< result.length; i++){
+            System.out.print(result[i]+ " ");
         }
-        System.out.println(sb);
     }
 }
