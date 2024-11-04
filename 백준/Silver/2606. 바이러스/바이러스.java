@@ -1,20 +1,21 @@
 import java.util.Scanner;
 
 public class Main {
-    static boolean [][] graph;
-    static boolean [] visited;
+    static boolean graph[][];
+    static boolean visited[];
     static int N, M;
-    static int answer;
+    static int result;
 
-    public static void dfs(int idx){
-        answer++;
-        visited[idx] = true;
-        for (int i = 1; i <= N; i++) {
-            if (!visited[i] && graph[idx][i]){
+    public static void dfs(int a){
+        result++;
+        visited[a] = true;
+        for (int i = 1; i < N+1; i++) {
+            if (!visited[i] && graph[a][i]){
                 dfs(i);
             }
         }
     }
+
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
         N = sc.nextInt();
@@ -29,7 +30,6 @@ public class Main {
             graph[x][y] = graph[y][x] = true;
         }
         dfs(1);
-        System.out.println(answer - 1);
-
+        System.out.println(result - 1);
     }
 }
