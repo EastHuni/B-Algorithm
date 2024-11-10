@@ -2,8 +2,6 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
-import java.util.IllegalFormatCodePointException;
-import java.util.Stack;
 import java.util.StringTokenizer;
 
 public class Main {
@@ -29,10 +27,10 @@ public class Main {
             A[s].add(l);
             A[l].add(s);
         }
-       for (int i = 0; i < N; i++) {
-           if (ans == 0){
-               DFS(i, 1);
-           }
+        for (int i = 0; i < N; i++) {
+            if (ans == 0){
+                DFS(i, 1);
+            }
         }
         System.out.println(ans);
     }
@@ -43,9 +41,8 @@ public class Main {
         }
         visited[v] = true;
         for(int i : A[v]){
-            int next = i;
-            if (!visited[next]){
-                DFS(next, depth+1);
+            if (!visited[i]){
+                DFS(i, depth+1);
             }
         }
         visited[v] = false;
