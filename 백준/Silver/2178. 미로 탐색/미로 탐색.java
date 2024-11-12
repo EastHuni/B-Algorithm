@@ -32,23 +32,24 @@ public class Main {
     }
     public static int bfs(int a, int b){
         Queue<int[]> q = new LinkedList<>();
-        q.add(new int[]{a, b, 1});
+        q.add(new int[]{a, b});
         visited[a][b] = true;
 
         while (!q.isEmpty()){
             int [] current = q.poll();
             int x = current[0];
             int y = current[1];
-            int dist = current[2];
+
             if (x == N && y == M) {
-                return dist;
+                return graph[x][y];
             }
             for (int i = 0; i < 4; i++) {
                 int nx = x +dx[i];
                 int ny = y +dy[i];
-                if (nx >= 1 && nx <= N && ny >= 1 && ny <= M && !visited[nx][ny] && graph[nx][ny] == 1){
+                if (nx >= 1 && nx <= N && ny >= 1 && ny <= M && !visited[nx][ny] && graph[nx][ny] != 0){
                     visited[nx][ny] = true;
-                    q.add(new int[]{nx,ny,dist+1});
+                    graph[nx][ny] = graph[x][y] + 1;
+                    q.add(new int[]{nx,ny});
                 }
             }
 
