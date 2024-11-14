@@ -4,15 +4,16 @@ import java.io.InputStreamReader;
 import java.util.StringTokenizer;
 
 public class Main {
-    static int N,M,K;
-    static int max = Integer.MIN_VALUE;
     static int [][] graph;
     static boolean [][] visited;
+    static int N, M, K, startX, startY;
+    static int MAX = Integer.MIN_VALUE;
     static int [] dx = {-1, 1, 0, 0};
     static int [] dy = {0, 0, -1, 1};
     public static void main(String[] args) throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-        StringTokenizer st = new StringTokenizer(br.readLine());
+        StringTokenizer st;
+        st = new StringTokenizer(br.readLine());
         N = Integer.parseInt(st.nextToken());
         M = Integer.parseInt(st.nextToken());
         K = Integer.parseInt(st.nextToken());
@@ -25,38 +26,38 @@ public class Main {
             }
         }
         dfs(0,0,0,0);
-        System.out.println(max);
+        System.out.println(MAX);
+
+
     }
-    public static void dfs(int x, int y, int sum, int depth){
-        if (depth == K){
-            max = Math.max(sum, max);
+    public static void dfs(int a, int b, int sum, int depth) {
+        if (depth == K) {
+            MAX = Math.max(MAX, sum);
             return;
         }
-        for (int i = x; i < N; i++) {
-            for (int j = y; j < M; j++) {
+        for (int i = a; i < N; i++) {
+            for (int j = b; j < M; j++) {
                 if (!visited[i][j]){
-                    if (check(i,j)){
+                    if (diff(i,j)){
                         visited[i][j] = true;
-                        dfs(x, y, sum + graph[i][j], depth +1);
+                        dfs(a, b, sum+ graph[i][j], depth +1);
                         visited[i][j] = false;
                     }
                 }
-
             }
         }
     }
-    public static boolean check(int x, int y){
+    public static boolean diff(int x, int y){
         boolean flag = true;
         for (int i = 0; i < 4; i++) {
-            int next_x = x + dx[i];
-            int next_y = y + dy[i];
-            if (next_x >= 0 && next_x< N && next_y >= 0 && next_y < M){
-                if (visited[next_x][next_y]){
-                    flag = false;
+            int nx = x + dx[i];
+            int ny = y + dy[i];
+            if (nx>= 0 && nx <N && ny>=0 && ny<M){
+                if (visited[nx][ny]) {
+                    flag =  false;
                 }
             }
         }
         return flag;
     }
-
 }
