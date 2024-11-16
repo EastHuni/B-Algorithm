@@ -4,54 +4,53 @@ import java.io.InputStreamReader;
 import java.util.Collections;
 import java.util.LinkedList;
 import java.util.List;
-import java.util.StringTokenizer;
 
 public class Main {
-    static int [][] graph;
+    static int N, count;
+    static int [][] arr;
     static boolean [][] visited;
-    static int [] dx = {-1, 1, 0, 0};  //상 하
-    static int [] dy = {0, 0, -1, 1}; // 좌 우
-    static int N, cnt;
-    static List<Integer> result;
+    static int [] dx = {-1, 1, 0 ,0};
+    static int [] dy = {0, 0, -1, 1};
+    static LinkedList <Integer> result;
     public static void main(String[] args) throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-        StringTokenizer st;
         N = Integer.parseInt(br.readLine());
-        graph = new int[N][N];
+        arr = new int [N][N];
         visited = new boolean[N][N];
         result = new LinkedList<>();
-        cnt = 1;
         for (int i = 0; i < N; i++) {
-            String str = br.readLine();
+            String s = br.readLine();
             for (int j = 0; j < N; j++) {
-                graph[i][j] = str.charAt(j) - '0';
+                arr[i][j] = s.charAt(j) - '0';
             }
         }
+        count = 1;
         for (int i = 0; i < N; i++) {
             for (int j = 0; j < N; j++) {
-             if (graph[i][j]==1 && !visited[i][j]){
-                 dfs(i, j);
-                 result.add(cnt);
-                 cnt = 1;
-             }
+                if(!visited[i][j] && arr[i][j] == 1){
+                    dfs(i, j);
+                    result.add(count);
+                    count = 1;
+                }
             }
         }
         Collections.sort(result);
         System.out.println(result.size());
-        for(int r: result){
-            System.out.println(r);
+        for(int i: result){
+            System.out.println(i);
         }
     }
-    public static void dfs(int a, int b){
-        visited[a][b] = true;
+    public static void dfs(int x, int y) {
+        visited[x][y] = true;
         for (int i = 0; i < 4; i++) {
-            int x = a + dx[i];
-            int y = b + dy[i];
-            if (x >= 0 && x<N && y>= 0 && y<N && !visited[x][y] && graph[x][y] == 1){
-                cnt++;
-                dfs(x,y);
+            int nx = x + dx[i];
+            int ny = y + dy[i];
+            if (nx>=0 && nx<N && ny>= 0 && ny <N){
+                if (!visited[nx][ny] && arr[nx][ny] == 1){
+                    count++;
+                    dfs(nx, ny);
+                }
             }
         }
-
     }
 }
