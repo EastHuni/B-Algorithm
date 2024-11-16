@@ -6,38 +6,34 @@ public class Solution {
         int T = sc.nextInt();
         for (int test_case = 1; test_case <= T; test_case++) {
             int N = sc.nextInt();
-            int a = 0; int b = 0; int c = 0; int d =0; int e = 0;
+            int count2 = 0;
+            int count3 = 0;
+            int count5 = 0;
+            int count7 = 0;
+            int count11 = 0;
             while (N > 1){
                 if (N % 2 == 0){
                     N /= 2;
-                    a++;
+                    count2++;
                 }
-                if (N % 3 == 0){
+                else if(N % 3 == 0){
                     N /= 3;
-                    b++;
+                    count3++;
                 }
-                if (N % 5 == 0){
+                else if(N % 5 == 0){
                     N /= 5;
-                    c++;
+                    count5++;
                 }
-                if (N % 7 == 0){
+                else if(N % 7 == 0){
                     N /= 7;
-                    d++;
+                    count7++;
                 }
-                if (N % 11 == 0){
+                else if(N % 11 == 0){
                     N /= 11;
-                    e++;
+                    count11++;
                 }
             }
-            StringBuilder sb = new StringBuilder();
-            sb.append(a).append(" ");
-            sb.append(b).append(" ");
-            sb.append(c).append(" ");
-            sb.append(d).append(" ");
-            sb.append(e).append(" ");
-            System.out.print("#" + test_case + " ");
-            System.out.print(sb);
-            System.out.println("");
+            System.out.println("#" + test_case +" " + count2 + " "+ count3 + " "+ count5 + " " +count7 + " "+ count11);
         }
     }
 }
